@@ -1,0 +1,39 @@
+{
+  "dataset": "Seeded synthetic transactions; not real financial data",
+  "trainedAt": "2026-10-18T17:41:26.284Z",
+  "framework": "TensorFlow.js 4.22.0",
+  "architecture": "8 inputs → Dense(16, ReLU) → Dense(8, ReLU) → Dense(1, sigmoid)",
+  "trainCount": 3200,
+  "validationCount": 800,
+  "testCount": 1000,
+  "epochs": 24,
+  "batchSize": 64,
+  "threshold": 0.3,
+  "validation": {
+    "precision": 0.9601990049751243,
+    "recall": 0.9061032863849765,
+    "f1": 0.9323671497584541,
+    "accuracy": 0.965,
+    "confusion": {
+      "tp": 193,
+      "fp": 8,
+      "tn": 579,
+      "fn": 20
+    },
+    "count": 800
+  },
+  "test": {
+    "precision": 0.9218106995884774,
+    "recall": 0.9032258064516129,
+    "f1": 0.9124236252545825,
+    "accuracy": 0.957,
+    "confusion": {
+      "tp": 224,
+      "fp": 19,
+      "tn": 733,
+      "fn": 24
+    },
+    "count": 1000
+  },
+  "limitations": "Synthetic holdout metrics describe the generator only. Scores are not calibrated probabilities. No real-world fraud performance is established."
+}

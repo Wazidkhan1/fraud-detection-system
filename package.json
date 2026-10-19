@@ -1,0 +1,25 @@
+{
+  "name": "sentinel-fraud-detection",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Real-time fraud monitoring with Express, TensorFlow.js and PostgreSQL",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js",
+    "demo": "node src/server.js --demo",
+    "train": "node scripts/train.js",
+    "test": "node --test --test-concurrency=1 tests/*.test.js",
+    "test:browser": "node scripts/browser-check.cjs",
+    "check": "node scripts/check.js"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "@tensorflow/tfjs": "^4.22.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": { "@playwright/test": "^1.64.1" }
+}
