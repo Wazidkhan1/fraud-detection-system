@@ -84,7 +84,11 @@ describe('API and PostgreSQL integration', () => {
     const results = await Promise.all(Array.from({ length: 6 }, () => service.ingest(body())));
     const velocities = results.map((result) => result.transaction.features[4] * 20).sort((a, b) => a - b);
     assert.deepEqual(velocities, [0, 1, 2, 3, 4, 5]);
-    assert.ok(results[5].transaction.indicators.some((indicator) => indicator.code === 'velocity'));
+    // Concurrent requests can acquire the account lock in any order.
+    for (const { transaction } of results) {
+      assert.equal(transaction.indicators.some((indicator) => indicator.code === 'velocity'),
+        transaction.features[4] * 20 >= 5);
+    }
   });
   test('invalid transactions and unknown accounts leave the ledger empty', async () => {
     assert.equal((await request('/transactions', 'POST', body({ amountMinor: 1.5 }))).status, 400);
